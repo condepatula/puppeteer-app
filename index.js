@@ -7,6 +7,13 @@ const fs=require('fs-extra');
 const compile=async function(templateName,data){
     const filePath=path.join(process.cwd(),'templates',`${templateName}.hbs`);
     const html=await fs.readFile(filePath,'utf-8');
+    hbs.registerHelper('eq',function (v1,v2,options){
+        if(v1===v2){
+            return options.fn(this);
+        }else{
+            return options.inverse(this);
+        }
+    });
     return hbs.compile(html)(data);
 }
 
@@ -29,7 +36,8 @@ const data={
         email:'info@delsol.com.py',
         direccion:'Avda. Aviadores del Chaco e/ Prof. Delia González',
         pais:'Paraguay',
-        ciudad:'Asunción'
+        ciudad:'Asunción',
+        type:1
     }
 };
 

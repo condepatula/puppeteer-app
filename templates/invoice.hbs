@@ -17,6 +17,11 @@
             <p class="lh-1">{{emisor.email}}</p>
             <p class="lh-1">{{emisor.direccion}}</p>
             <p class="lh-1">{{emisor.ciudad}} - {{emisor.pais}}</p>
+            {{#eq emisor.type 1}}
+             <p>Fisico</p>
+            {{else}}
+             <p>Juridico</p>
+            {{/eq}}
         </div>
     </div>
 </body>
